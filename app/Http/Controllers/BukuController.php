@@ -8,64 +8,58 @@ class BukuController extends Controller
 {
     public function index()
     {
-        $data['objek']  = \App\User::latest()->paginate(10);
-        return view('user_index', $data);
+        $data['objek']  = \App\Buku::latest()->paginate(10);
+        return view('buku_index', $data);
     }
 
     public function tambah()
     {
-        $data['objek'] = new \App\User();
+        $data['objek'] = new \App\Buku();
         $data['action'] = 'BukuController@simpan';
         $data['method'] = 'POST';
         $data['nama_tombol'] = 'SIMPAN';
-        return view('user_form', $data);
+        return view('buku_form', $data);
     }
 
     public function simpan(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:2',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'same:password_confirmation'
+            'judul' => 'required|min:2',
+            'pengarang' => 'required|min:2',
         ]);
 
-        $objek = new \App\User();
-        $objek->name = $request->name;
-        $objek->email = $request->email;
-        $objek->password = bcrypt($request->password);
+        $objek = new \App\Buku();
+        $objek->judul = $request->judul;
+        $objek->pengarang = $request->pengarang;
         $objek->save();
-        //\App\User::create($request->except('password_confirmation'));
-        return back()->with('pesan', 'data sudah disimpan');
+        return back()->with('pesan', 'buku sudah disimpan');
     }
     public function edit($id)
     {
-        $data['objek'] = \App\User::findOrFail($id);
+        $data['objek'] = \App\Buku::findOrFail($id);
         $data['action'] = ['BukuController@update', $id];
         $data['method'] = 'PUT';
         $data['nama_tombol'] = 'UPDATE';
-        return view('user_form', $data);
+        return view('buku_form', $data);
     }
     public function update(Request $request,$id)
     {
         $request->validate([
-                'name' => 'required|min:2',
-                'email' => 'required|email|unique:users,email,' . $id,
-                'password' => 'same:password_confirmation'
+                'judul' => 'required|min:2',
+                'pengarang' => 'required|min:2',
             ]);
 
-            $objek = \App\User::findOrFail($id);
-            $objek->name = $request->name;
-            $objek->email = $request->email;
-            if ($request->password != "") {
-                $objek->password = bcrypt($request->password);
-            }
+            $objek = \App\Buku::findOrFail($id);
+            $objek->judul = $request->judul;
+            $objek->pengarang = $request->pengarang;
             $objek->save();
-            return redirect('admin/user/index')->with('pesan', 'data sudah diupdate');
+            return redirect('admin/buku/index')->with('pesan', 'Data Buku Sudah Diupdate');
     }
     public function hapus($id)
     {
-        $objek = \App\User::findOrFail($id);
+        $objek = \App\Buku::findOrFail($id);
         $objek->delete();
-        return back()->with('pesan', 'Data berhasil dihapus');
+        return back()->with('pesan', 'Data Berhasil Dihapus');
     }
+    
 }

@@ -36,7 +36,7 @@
                         
                     @auth
                         <li class="nav-item">
-                             <a href="{{ url('admin/user/index', []) }}" class="nav-link">Data User</a>
+                             <a href="{{ url('admin/buku/index', []) }}" class="nav-link">Data Buku</a>
                         </li>
                     @endauth
                     </ul>

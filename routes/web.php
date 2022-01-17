@@ -20,12 +20,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->middleware('auth')->group(function () {
-    Route::get('user/index','BukuController@index');
-    Route::get('user/tambah','BukuController@tambah');
-    Route::post('user/simpan','BukuController@simpan');
+    Route::get('buku/index','BukuController@index');
+    Route::get('buku/tambah','BukuController@tambah');
+    Route::post('buku/simpan','BukuController@simpan');
 
-    Route::get('user/edit/{id}','BukuController@edit');
-    Route::put('user/update/{id}','BukuController@update');
+    Route::get('buku/edit/{id}','BukuController@edit');
+    Route::put('buku/update/{id}','BukuController@update');
 
-    Route::get('user/hapus/{id}','BukuController@hapus');
+    Route::get('buku/hapus/{id}','BukuController@hapus');
 });
