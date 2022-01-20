@@ -24,13 +24,13 @@
 
                     <div class="form-group">
                         <label for="created_at">Created At</label>
-                        {!! date('created_at') !!}
+                        {!! Form::text('created_at', null, []) !!}
                         <span class="text-helper">{{ $errors->first('created_at') }}</span>
                     </div>
 
                     <div class="form-group">
                         <label for="updated_at">Updated At</label>
-                        {!! date('updated_at') !!}
+                        {!! Form::text('updated_at', null, []) !!}
                         <span class="text-helper">{{ $errors->first('updated_at') }}</span>
                     </div>
 

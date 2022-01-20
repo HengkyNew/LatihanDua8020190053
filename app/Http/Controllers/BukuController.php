@@ -39,7 +39,7 @@ class BukuController extends Controller
         $data['objek'] = \App\Buku::findOrFail($id);
         $data['action'] = ['BukuController@update', $id];
         $data['method'] = 'PUT';
-        $data['nama_tombol'] = 'UPDATE';
+        $data['nama_tombol'] = 'Update';
         return view('buku_form', $data);
     }
     public function update(Request $request,$id)
